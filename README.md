@@ -1,7 +1,7 @@
 # Personal Dashboard App
 
 # Installation
-> pnpm i
+> npm i
 
 # Start
-> pnpm start
+> npm start
