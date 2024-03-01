@@ -1,9 +1,9 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import { useDispatch } from "react-redux";
-import { Form } from "react-router-dom";
-import { addUser } from "../store/features/userSlice";
+import { useNavigate } from "react-router-dom";
+import useUsers from "../hooks/useUsers";
 import Button from "../components/Button";
 import Container from "../components/Container";
+import Form from "../components/Form";
 import Input from "../components/Input";
 import Title from "../components/Title";
 
@@ -14,13 +14,14 @@ type FormValue = {
 };
 
 export default function Signup() {
+  const navigate = useNavigate();
+  const { signup } = useUsers();
+
   const [formValue, setFormValue] = useState<FormValue>({
     name: "",
     email: "",
     avatar: "",
   });
-
-  const dispatch = useDispatch();
 
   const handleChange = (e: ChangeEvent) => {
     const { name, value } = e.target as HTMLInputElement;
@@ -45,9 +46,9 @@ export default function Signup() {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-
     const { name, email, avatar } = formValue;
-    dispatch(addUser({ name, email, avatar }));
+    signup(name, email, avatar);
+    navigate("/profile");
   };
 
   return (
@@ -74,7 +75,6 @@ export default function Signup() {
           type='file'
           onChange={handleImageUpload}
           placeholder='Image'
-          required
         />
 
         <Button type='submit' value='Create' />

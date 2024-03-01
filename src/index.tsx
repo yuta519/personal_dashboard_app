@@ -5,10 +5,19 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./store";
 import Profile from "./pages/Profile";
+import Root from "./pages/Root";
+import Signup from "./pages/Signup";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Profile /> },
-  { path: "/profile", element: <Profile /> },
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      { path: "/", element: <Profile /> },
+      { path: "/profile", element: <Profile /> },
+    ],
+  },
+  { path: "/signup", element: <Signup /> },
 ]);
 
 const App = () => {
