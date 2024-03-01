@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Button = styled.input`
   width: 100%;
+  max-width: 100px;
   padding: 10px;
   border: none;
   border-radius: 5px;
