@@ -61,6 +61,7 @@ export default function Signup() {
           value={formValue.name}
           onChange={handleChange}
           placeholder='Name'
+          required
         />
         <Input
           name='email'

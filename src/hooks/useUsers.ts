@@ -11,6 +11,10 @@ export default function useUsers() {
     if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email))
       throw new Error("Invalid email address");
 
+    if (!avatar.length)
+      // https://ashallendesign.co.uk/blog/13-placeholder-avatar-and-image-websites
+      avatar = `https://eu.ui-avatars.com/api/?name=${name}&size=250`;
+
     dispatch(addUser({ name, email, avatar }));
   };
 
