@@ -7,6 +7,7 @@ import { store } from "./store";
 import Profile from "./pages/Profile";
 import Root from "./pages/Root";
 import Signup from "./pages/Signup";
+import { TodoList } from "./pages/TodoList";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Profile /> },
       { path: "/profile", element: <Profile /> },
+      { path: "/todos", element: <TodoList /> },
     ],
   },
   { path: "/signup", element: <Signup /> },
