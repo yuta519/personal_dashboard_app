@@ -5,6 +5,7 @@ const initialState: User = {
   name: undefined,
   email: undefined,
   location: undefined,
+  avatar: undefined,
 };
 
 const userSlice = createSlice({
@@ -12,10 +13,11 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addUser(state, action) {
-      const { name, email, location } = action.payload;
+      const { name, email, location, avatar } = action.payload;
       state.name = name;
       state.email = email;
       state.location = location;
+      state.avatar = avatar;
     },
   },
 });
