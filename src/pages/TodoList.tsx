@@ -5,6 +5,7 @@ import Input from "../components/Input";
 import Title from "../components/Title";
 import Button from "../components/Button";
 import { Column, Row } from "../components/Grid";
+import Subtitle from "../components/Subtitle";
 
 export function TodoList() {
   const { todos, add, remove, toggleComplete } = useTodos();
@@ -14,6 +15,7 @@ export function TodoList() {
     setNewTodo(e.target.value);
 
   const handleCreate = () => {
+    if (!newTodo.length) return;
     add(newTodo);
     setNewTodo("");
   };
@@ -28,7 +30,7 @@ export function TodoList() {
     <>
       <Title>Todo List</Title>
       <StyledRow>
-        <Column grid={2} />
+        <Column grid={3} />
         <StyledColumn grid={6}>
           <Input
             name='text'
@@ -39,33 +41,30 @@ export function TodoList() {
             required
           />
         </StyledColumn>
-        <StyledColumn grid={1}>
+        <StyledColumn grid={2}>
           <Button type='submit' onClick={handleCreate}>
-            +
+            Create
           </Button>
         </StyledColumn>
       </StyledRow>
 
-      {todos.map((todo, index) => (
-        <StyledRow key={index}>
-          <StyledColumn grid={2}>
-            <input
+      <>
+        {!!todos.length && <Subtitle>Tasks</Subtitle>}
+        {todos.map((todo, index) => (
+          <TodoWrapper key={index}>
+            <CheckBox
               type='checkbox'
               checked={todo.isComplete}
               data-index={index}
               onChange={handleToggle}
             />
-          </StyledColumn>
-          <StyledColumn grid={6}>
-            <span>{todo.text}</span>
-          </StyledColumn>
-          <StyledColumn grid={2}>
+            <StyledText isComplete={todo.isComplete}>{todo.text}</StyledText>
             <Button data-index={index} onClick={handleRemove}>
               Remove
             </Button>
-          </StyledColumn>
-        </StyledRow>
-      ))}
+          </TodoWrapper>
+        ))}
+      </>
     </>
   );
 }
@@ -79,5 +78,64 @@ const StyledRow = styled(Row)`
 const StyledColumn = styled(Column)`
   display: flex;
   align-items: center;
+`;
+
+const TodoWrapper = styled.div`
+  display: flex;
+  align-items: center;
   margin: 10px 20px;
+  padding: 0 20px;
+  border: 2px solid #dcdcdc;
+  border-radius: 10px;
+
+  @media (max-width: 768px) {
+    width: 80%;
+    flex: 0 0 100%;
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 60%;
+    flex: 0 0 75%;
+  }
+
+  @media (min-width: 1025px) {
+    width: 50%;
+    flex: 0 0 50%;
+  }
+`;
+
+type StyledTextProps = {
+  isComplete?: boolean;
+};
+
+const CheckBox = styled.input`
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+`;
+
+const StyledText = styled.span<StyledTextProps>`
+  font-family: Arial, sans-serif;
+  width: 100%;
+  display: inline;
+  min-width: 200px;
+  margin: 10px 40px;
+
+  text-decoration-line: ${(props) =>
+    props.isComplete ? "line-through" : "none"};
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    margin: 0 5px;
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    font-size: 20px;
+    margin: 10px 20px;
+  }
+
+  @media (min-width: 1025px) {
+    font-size: 24px;
+    margin: 10px 40px;
+  }
 `;
