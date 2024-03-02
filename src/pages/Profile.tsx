@@ -15,6 +15,7 @@ export default function Profile() {
         <Email>{user.email}</Email>
       </ProfileWrapper>
       <Link to='/todos'>todos</Link>
+      <Link to='/weather'>weather</Link>
     </>
   );
 }

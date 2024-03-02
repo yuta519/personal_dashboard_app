@@ -7,7 +7,8 @@ import { store } from "./store";
 import Profile from "./pages/Profile";
 import Root from "./pages/Root";
 import Signup from "./pages/Signup";
-import { TodoList } from "./pages/TodoList";
+import TodoList from "./pages/TodoList";
+import Weather from "./pages/Weather";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Profile /> },
       { path: "/profile", element: <Profile /> },
       { path: "/todos", element: <TodoList /> },
+      { path: "/weather", element: <Weather /> },
     ],
   },
   { path: "/signup", element: <Signup /> },
