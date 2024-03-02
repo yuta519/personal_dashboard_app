@@ -7,7 +7,7 @@ import Button from "../components/Button";
 import { Column, Row } from "../components/Grid";
 import Subtitle from "../components/Subtitle";
 
-export function TodoList() {
+export default function TodoList() {
   const { todos, add, remove, toggleComplete } = useTodos();
   const [newTodo, setNewTodo] = useState<string>("");
 
