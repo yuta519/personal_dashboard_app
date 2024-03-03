@@ -51,7 +51,7 @@ const Logo = styled.div`
 const DropdownMenu = styled.div<{ show: boolean }>`
   position: absolute;
   top: 50px;
-  right: 10px;
+  right: 20px;
   display: ${(props) => (props.show ? "block" : "none")};
   background-color: #fff;
   padding: 10px;
