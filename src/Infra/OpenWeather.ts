@@ -55,7 +55,13 @@ export class OpenWeather {
 
   private async getRequest<T>(url: string): Promise<T> {
     try {
-      const result = await axios.get(url).then((res) => res.data);
+      const result = await axios
+        .get(url, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => res.data);
       return result;
     } catch (error) {
       if (axios.isAxiosError(error)) {
