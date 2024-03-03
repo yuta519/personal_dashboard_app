@@ -1,7 +1,6 @@
 import Title from "../components/Title";
 import styled from "styled-components";
 import useUsers from "../hooks/useUsers";
-import { Link } from "react-router-dom";
 
 export default function Profile() {
   const { user } = useUsers();
@@ -14,8 +13,6 @@ export default function Profile() {
         <Name>{user.name}</Name>
         <Email>{user.email}</Email>
       </ProfileWrapper>
-      <Link to='/todos'>todos</Link>
-      <Link to='/weather'>weather</Link>
     </>
   );
 }
