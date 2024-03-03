@@ -41,7 +41,7 @@ export default function TodoList() {
             required
           />
         </StyledColumn>
-        <StyledColumn grid={2}>
+        <StyledColumn grid={1}>
           <Button type='submit' onClick={handleCreate}>
             Create
           </Button>
