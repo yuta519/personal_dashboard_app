@@ -39,7 +39,9 @@ export default function Weather() {
           value={keyword}
           onChange={handleChange}
         />
-        <Button onClick={handleSearch}>Search City</Button>
+        <Button color='secondary' onClick={handleSearch}>
+          Search City
+        </Button>
       </Wrapper>
       {loadingCities ? (
         <Loader />

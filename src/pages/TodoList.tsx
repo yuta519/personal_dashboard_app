@@ -1,10 +1,8 @@
 import { ChangeEvent, MouseEvent, useState } from "react";
 import styled from "styled-components";
 import { useTodos } from "../hooks/useTodos";
-import Input from "../components/Input";
 import Title from "../components/Title";
 import Button from "../components/Button";
-import { Column, Row } from "../components/Grid";
 import Subtitle from "../components/Subtitle";
 
 export default function TodoList() {
@@ -29,59 +27,42 @@ export default function TodoList() {
   return (
     <>
       <Title>Todo List</Title>
-      <StyledRow>
-        <Column grid={3} />
-        <StyledColumn grid={6}>
-          <Input
-            name='text'
-            type='text'
-            value={newTodo}
-            onChange={handleChange}
-            placeholder='Create new Task...'
-            required
-          />
-        </StyledColumn>
-        <StyledColumn grid={1}>
-          <Button type='submit' onClick={handleCreate}>
-            Create
-          </Button>
-        </StyledColumn>
-      </StyledRow>
+      <TodoWrapper>
+        <StyledInput
+          name='text'
+          type='text'
+          value={newTodo}
+          onChange={handleChange}
+          placeholder='Create new Task...'
+          required
+        />
+        <Button type='submit' color='primary' onClick={handleCreate}>
+          Create
+        </Button>
+      </TodoWrapper>
 
-      <>
-        {!!todos.length && <Subtitle>Tasks</Subtitle>}
-        {todos.map((todo, index) => (
-          <TodoWrapper key={index}>
-            <CheckBox
-              type='checkbox'
-              checked={todo.isComplete}
-              data-index={index}
-              onChange={handleToggle}
-            />
-            <StyledText isComplete={todo.isComplete}>{todo.text}</StyledText>
-            <Button data-index={index} onClick={handleRemove}>
-              Remove
-            </Button>
-          </TodoWrapper>
-        ))}
-      </>
+      {!!todos.length && <Subtitle>Tasks</Subtitle>}
+      {todos.map((todo, index) => (
+        <TodoWrapper key={index}>
+          <CheckBox
+            type='checkbox'
+            checked={todo.isComplete}
+            data-index={index}
+            onChange={handleToggle}
+          />
+          <StyledText isComplete={todo.isComplete}>{todo.text}</StyledText>
+          <Button data-index={index} color='danger' onClick={handleRemove}>
+            Remove
+          </Button>
+        </TodoWrapper>
+      ))}
     </>
   );
 }
 
-const StyledRow = styled(Row)`
-  display: flex;
-  align-items: center;
-  text-align: center;
-`;
-
-const StyledColumn = styled(Column)`
-  display: flex;
-  align-items: center;
-`;
-
 const TodoWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin: 10px 20px;
   padding: 0 20px;
@@ -104,14 +85,23 @@ const TodoWrapper = styled.div`
   }
 `;
 
+const CheckBox = styled.input`
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+`;
+
 type StyledTextProps = {
   isComplete?: boolean;
 };
 
-const CheckBox = styled.input`
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+const StyledInput = styled.input`
+  width: 80%;
+  padding: 2px;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 1px solid #ddd;
 `;
 
 const StyledText = styled.span<StyledTextProps>`

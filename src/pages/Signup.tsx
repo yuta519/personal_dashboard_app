@@ -78,7 +78,9 @@ export default function Signup() {
           placeholder='Image'
         />
 
-        <Button type='submit'>Create</Button>
+        <Button color='primary' type='submit'>
+          Create
+        </Button>
       </Form>
     </Container>
   );
