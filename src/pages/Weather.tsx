@@ -1,5 +1,4 @@
 import { ChangeEvent, MouseEvent, useCallback, useState } from "react";
-import Input from "../components/Input";
 import Title from "../components/Title";
 import Button from "../components/Button";
 import useCities from "../hooks/useCities";
@@ -31,18 +30,19 @@ export default function Weather() {
   return (
     <>
       <Title>Weather</Title>
-      <Subtitle>Search City</Subtitle>
-      <Wrapper>
-        <Input
+      <SearchWrapper>
+        <StyledInput
+          name='text'
           type='text'
-          placeholder='Enter city'
           value={keyword}
           onChange={handleChange}
+          placeholder='Type a city name...'
+          required
         />
-        <Button color='secondary' onClick={handleSearch}>
-          Search City
+        <Button type='submit' color='secondary' onClick={handleSearch}>
+          Search
         </Button>
-      </Wrapper>
+      </SearchWrapper>
       {loadingCities ? (
         <Loader />
       ) : (
@@ -50,7 +50,7 @@ export default function Weather() {
           {!!cities.length && <Subtitle>Choose City</Subtitle>}
           <Wrapper>
             {cities.map((city, index) => (
-              <CityRow key={index} onClick={handleClick}>
+              <CityRow key={index} id={index.toString()} onClick={handleClick}>
                 <StyledText>
                   {`${city.name} (${city.state ? `${city.state}, ` : ""}${
                     city.country
@@ -84,6 +84,31 @@ const Loader = styled.div`
   width: 120px;
   height: 120px;
   animation: ${spin} 2s linear infinite;
+`;
+
+const SearchWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 20px;
+  padding: 0 20px;
+  border: 2px solid #dcdcdc;
+  border-radius: 10px;
+
+  @media (max-width: 768px) {
+    width: 80%;
+    flex: 0 0 100%;
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 60%;
+    flex: 0 0 75%;
+  }
+
+  @media (min-width: 1025px) {
+    width: 50%;
+    flex: 0 0 50%;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -142,4 +167,13 @@ const CityRow = styled.div`
   &:hover {
     background-color: #f9f9f9;
   }
+`;
+
+const StyledInput = styled.input`
+  width: 80%;
+  padding: 2px;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 1px solid #ddd;
 `;
