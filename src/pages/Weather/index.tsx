@@ -11,7 +11,12 @@ export default function Weather() {
   const [keyword, setKeyword] = useState<string>("");
 
   const { cities, loading: loadingCities, getCityByName } = useCities();
-  const { weather, getWeatherByCity, clear } = useWeather();
+  const {
+    weather,
+    loading: loadingWeather,
+    getWeatherByCity,
+    clear,
+  } = useWeather();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     setKeyword(e.target.value);
@@ -44,12 +49,14 @@ export default function Weather() {
           Search
         </Button>
       </SearchWrapper>
-      {loadingCities ? (
+      {loadingCities || loadingWeather ? (
         <Loader />
       ) : (
-        <Cities cities={cities} onClick={handleClick} />
+        <>
+          {!!cities.length && <Cities cities={cities} onClick={handleClick} />}
+          {weather && <CurrentWeathner weather={weather} />}
+        </>
       )}
-      {weather && <CurrentWeathner weather={weather} />}
     </>
   );
 }

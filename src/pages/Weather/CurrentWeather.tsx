@@ -17,16 +17,14 @@ export default function CurrentWeathner({ weather }: { weather: Weather }) {
         <StyledColumn grid={4}>
           <Box>
             <StyledText>Temperature</StyledText>
-            <StyledText>{`${weather.temperature.avg}°C`}</StyledText>
+            <Temperature>{`${weather.temperature.avg}°C`}</Temperature>
           </Box>
         </StyledColumn>
         <StyledColumn grid={4}>
-          <Box></Box>
-          <StyledText>{`Temperature: ${weather.temperature.avg}°C`}</StyledText>
-        </StyledColumn>
-        <StyledColumn grid={4}>
-          <Box></Box>
-          <StyledText>{`Humidity: ${weather.humidity}%`}</StyledText>
+          <Box>
+            <StyledText>Humidity</StyledText>
+            <Temperature>{`${weather.humidity}%`}</Temperature>
+          </Box>
         </StyledColumn>
       </Row>
     </Wrapper>
@@ -52,12 +50,10 @@ const Wrapper = styled.div`
 const Box = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   vertical-align: middle;
   border: 1px solid #dcdcdc;
   border-radius: 10px;
-  padding: 20px 10px;
-  margin: 10px;
+  padding: 10px 10px;
 
   @media (max-width: 768px) {
     width: 70px;
@@ -86,10 +82,11 @@ const StyledText = styled.p`
   font-family: Arial, sans-serif;
   width: 100%;
   display: inline;
-  margin: 0px 5px;
+  margin: 0;
+  text-align: center;
 
   @media (max-width: 768px) {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
@@ -98,5 +95,25 @@ const StyledText = styled.p`
 
   @media (min-width: 1025px) {
     font-size: 18px;
+  }
+`;
+
+const Temperature = styled.p`
+  font-family: Arial, sans-serif;
+  width: 100%;
+  display: inline;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    font-size: 36px;
+  }
+
+  @media (min-width: 1025px) {
+    font-size: 40px;
   }
 `;

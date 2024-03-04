@@ -12,7 +12,7 @@ export default function Cities({
 }) {
   return (
     <Wrapper>
-      {!!cities.length && <Subtitle>Choose City</Subtitle>}
+      <Subtitle>Choose City</Subtitle>
       {cities.map((city, index) => (
         <CityRow key={index} id={index.toString()} onClick={onClick}>
           <StyledText>
