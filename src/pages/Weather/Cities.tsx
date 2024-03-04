@@ -28,17 +28,17 @@ export default function Cities({
 
 const Wrapper = styled.div`
   @media (max-width: 768px) {
-    width: 90%;
-    flex: 0 0 100%;
-  }
-
-  @media (min-width: 769px) and (max-width: 1024px) {
     width: 80%;
     flex: 0 0 80%;
   }
 
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 60%;
+    flex: 0 0 60%;
+  }
+
   @media (min-width: 1025px) {
-    width: 70%;
+    width: 50%;
     flex: 0 0 50%;
   }
 `;
