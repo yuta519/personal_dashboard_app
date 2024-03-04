@@ -88,7 +88,9 @@ export class OpenWeather {
     const response = await this.getRequest<WeatherResponse>(url);
     const weather: Weather = {
       name: response.name,
-      weather: response.weather,
+      main: response.weather[0].main,
+      description: response.weather[0].main,
+      icon: `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`,
       temperature: {
         avg: response.main.temp,
         feelsLike: response.main.feels_like,

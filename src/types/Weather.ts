@@ -1,9 +1,7 @@
 export type Weather = {
-  weather: {
-    main: string;
-    description: string;
-    icon: string;
-  }[];
+  main: string;
+  description: string;
+  icon: string;
   temperature: {
     avg: number;
     feelsLike: number;
