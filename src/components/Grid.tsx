@@ -18,7 +18,7 @@ export const Column = styled.div<ColumnProps>`
   flex: 1;
 
   @media (max-width: 768px) {
-    flex: 0 0 100%;
+    flex: 0 0 ${(props) => (props.grid ? (props.grid / 12) * 100 : 100)}%;
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
