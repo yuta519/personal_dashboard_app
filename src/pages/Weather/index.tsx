@@ -1,6 +1,11 @@
-import { ChangeEvent, MouseEvent, useCallback, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  MouseEvent,
+  useCallback,
+  useState,
+} from "react";
 import Title from "../../components/Title";
-import Button from "../../components/Button";
 import useCities from "../../hooks/useCities";
 import styled, { keyframes } from "styled-components";
 import useWeather from "../../hooks/useWeather";
@@ -21,12 +26,17 @@ export default function Weather() {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     setKeyword(e.target.value);
 
-  const handleSearch = useCallback(async () => {
-    if (!keyword.length) return;
-    clear();
+  const handleSearch = useCallback(
+    async (e: FormEvent<HTMLFormElement> | MouseEvent<HTMLElement>) => {
+      e.preventDefault();
 
-    getCityByName(keyword);
-  }, [clear, getCityByName, keyword]);
+      if (!keyword.length) return;
+      clear();
+
+      await getCityByName(keyword);
+    },
+    [clear, getCityByName, keyword]
+  );
 
   const handleClick = async (e: MouseEvent<HTMLElement>) => {
     const city = cities[Number(e.currentTarget.id as string)];
@@ -37,17 +47,16 @@ export default function Weather() {
     <>
       <Title>Weather</Title>
       <SearchWrapper>
-        <StyledInput
-          name='text'
-          type='text'
-          value={keyword}
-          onChange={handleChange}
-          placeholder='Type a city name...'
-          required
-        />
-        <Button type='submit' color='secondary' onClick={handleSearch}>
-          Search
-        </Button>
+        <StyledForm onSubmit={handleSearch}>
+          <StyledInput
+            name='text'
+            type='text'
+            value={keyword}
+            onChange={handleChange}
+            placeholder='Type a city name...'
+            required
+          />
+        </StyledForm>
       </SearchWrapper>
       {loadingCities || loadingWeather ? (
         <Loader />
@@ -77,12 +86,12 @@ const Loader = styled.div`
 
 const SearchWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: 10px 20px;
   padding: 0 20px;
-  border: 2px solid #dcdcdc;
-  border-radius: 10px;
+  // border: 2px solid #dcdcdc;
+  // border-radius: 10px;
 
   @media (max-width: 768px) {
     width: 80%;
@@ -100,11 +109,15 @@ const SearchWrapper = styled.div`
   }
 `;
 
-const StyledInput = styled.input`
+const StyledForm = styled.form`
   width: 80%;
+`;
+const StyledInput = styled.input`
+  width: 100%;
   padding: 2px;
   border-top: 0px;
   border-right: 0px;
   border-left: 0px;
   border-bottom: 1px solid #ddd;
+  font-size: 16px;
 `;
