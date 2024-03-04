@@ -17,7 +17,7 @@ npm i
 
 ## Starting
 
-Start the project with the command and visit [http://localhost:3000](http://localhost:3000`).
+Start the project with the command and visit [http://localhost:3000](http://localhost:3000).
 
 ```bash
 # Start
