@@ -24,6 +24,12 @@ Start the project with the command and visit [http://localhost:3000](http://loca
 npm start
 ```
 
+## Test
+
+```bash
+npm test
+```
+
 ## Design Decision
 
 ### SOLID principles
@@ -59,3 +65,29 @@ npm start
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/reactrouter/reactrouter-original.svg" alt="redux" width="40" height="40"/>
   </a>
 </p>
+
+## How to explore app
+
+- Signup
+
+  - The app will show the signup page at the first time you visit.
+  - Please input your information. Name and Email are required.
+  - <img src="./assets/01signup.png" alt="signup"/>
+
+- Profile
+
+  - Based on the information which you input, the app displays profile.
+  - By clicking the avatar icon on the right side, dropdown menu appears and you can move another page.
+  - <img src="./assets/02profile.png" alt="profile"/>
+
+- Todo List
+
+  - You can create, remove, update your todos on this page.
+  - <img src="./assets/03todos.png" alt="todos"/>
+
+- Weather
+  - You can check weather information on this page.
+  - Firstly, you need to search and specify a city.
+  - By clicking a city name, the app tell you a weather of a city.
+  - City and weather information is based on [OpenWeather API](https://openweathermap.org/api)
+  - <img src="./assets/04weather.png" alt="todos"/>
