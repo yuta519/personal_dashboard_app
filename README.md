@@ -1,6 +1,6 @@
 # Personal Dashboard App
 
-This is a web application project with React. There 3 main pages, profile, todo list and weather.
+This is a web application project with React. There 3 main pages, profile, todo list and weather. You can access the [demo](https://personal-dashboard-app-plum.vercel.app).
 
 ## Installation
 
