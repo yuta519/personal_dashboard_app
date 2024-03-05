@@ -6,11 +6,11 @@ import { Weather } from "../../types/Weather";
 export default function CurrentWeathner({ weather }: { weather: Weather }) {
   return (
     <Wrapper>
-      <Subtitle>Current Weather</Subtitle>
+      <Subtitle>Current Weather: {weather.name}</Subtitle>
       <Row>
         <StyledColumn grid={4}>
           <Box>
-            <StyledText>{`${weather.main}`}</StyledText>
+            <StyledText>{weather.main}</StyledText>
             <img src={weather.icon} alt={weather.main} />
           </Box>
         </StyledColumn>
