@@ -38,7 +38,7 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0;
+  padding: 0 10px;
   background-color: #f8f9fa;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
