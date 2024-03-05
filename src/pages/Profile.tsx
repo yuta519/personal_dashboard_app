@@ -20,7 +20,6 @@ const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   background-color: #f9f9f9;
   width: 100%;
 `;
